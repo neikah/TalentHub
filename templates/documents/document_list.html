@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+    <h2>Document Center</h2>
+
+   <a href="/documents/upload/" class="btn btn-primary rounded-pill">
+    Upload Document
+    </a>
+</div>
+
+<table class="table table-hover align-middle">
+
+<thead class="table-dark">
+<tr>
+<th>Employee</th>
+<th>Document</th>
+<th>Title</th>
+<th>Uploaded</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for document in documents %}
+
+<tr>
+
+<td>{{ document.employee }}</td>
+<td>{{ document.document_type }}</td>
+<td>{{ document.title }}</td>
+<td>{{ document.uploaded_at }}</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="4" class="text-center">
+
+No Documents Uploaded
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

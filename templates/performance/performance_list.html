@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+    <h2>Performance Reviews</h2>
+
+<a href="/performance/add/" class="btn btn-primary rounded-pill">
+    + Add Review
+</a>
+
+</div>
+
+<table class="table table-hover align-middle">
+
+<thead class="table-dark">
+
+<tr>
+<th>Employee</th>
+<th>Review Date</th>
+<th>Rating</th>
+<th>Reviewer</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for review in reviews %}
+
+<tr>
+
+<td>{{ review.employee }}</td>
+<td>{{ review.review_date }}</td>
+<td>{{ review.rating }}/5</td>
+<td>{{ review.reviewer }}</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="4" class="text-center">
+No Reviews Yet
+</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

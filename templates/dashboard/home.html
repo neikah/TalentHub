@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card p-4 mb-4">
+
+<h2 class="fw-bold">
+
+Welcome Back 👋
+
+</h2>
+
+<p class="text-muted">
+
+Manage recruitment, employees, attendance, performance and reports from one dashboard.
+
+</p>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card p-3 bg-primary text-white">
+        <h6 class="text-uppercase">
+            <i class="bi bi-people-fill"></i> Employees
+        </h6>
+
+        <h1 class="fw-bold">
+            {{ total_employees }}
+        </h1>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card p-3 bg-success text-white">
+            <h6 class="text-muted">
+                <i class="bi bi-briefcase-fill"></i> Jobs
+            </h6>
+            <h2>{{ total_jobs }}</h2>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card p-3 bg-warning text-dark">
+            <h6 class="text-muted">
+                <i class="bi bi-calendar-check-fill"></i> Attendance
+            </h6>
+            <h2>{{ attendance_today }}</h2>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card p-3 bg-danger text-white">
+            <h6 class="text-muted">
+                <i class="bi bi-calendar-x-fill"></i> Leave Requests
+            </h6>
+            <h2>{{ leave_requests }}</h2>
+        </div>
+    </div>
+
+</div>
+
+<div class="card p-4 mb-4">
+
+    <h4 class="mb-3">
+        Recruitment Analytics
+    </h4>
+
+<div style="height:350px;">
+    <canvas id="myChart"></canvas>
+</div>
+
+</div>
+
+<div class="card p-4 mb-4">
+
+    <h4 class="mb-3">
+        Recent Notifications
+    </h4>
+
+    <ul class="list-group">
+
+    {% for notification in notifications %}
+
+        <li class="list-group-item">
+
+            {{ notification.message }}
+
+        </li>
+
+    {% empty %}
+
+        <li class="list-group-item">
+
+            No Notifications
+
+        </li>
+
+    {% endfor %}
+
+    </ul>
+
+</div>
+
+<div class="card p-4">
+
+    <h4 class="mb-3">
+        Recent Jobs
+    </h4>
+
+    <table class="table table-hover align-middle">
+
+        <thead>
+
+        <tr>
+
+            <th>Title</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Type</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for job in jobs %}
+
+        <tr>
+
+            <td>{{ job.title }}</td>
+            <td>{{ job.department }}</td>
+            <td>{{ job.location }}</td>
+            <td>{{ job.job_type }}</td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+
+            <td colspan="4" class="text-center">
+                No Jobs Posted Yet
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+
+            'Employees',
+            'Jobs',
+            'Attendance',
+            'Leave'
+
+        ],
+
+        datasets: [{
+
+            label: 'TalentHub Analytics',
+
+            data: [
+
+                {{ total_employees }},
+                {{ total_jobs }},
+                {{ attendance_today }},
+                {{ leave_requests }}
+
+            ]
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+
+                display: true
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

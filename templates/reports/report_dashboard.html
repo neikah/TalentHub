@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+Reports Center
+
+</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card p-3">
+
+<h5>Total Employees</h5>
+
+<h2>{{ employees|length }}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3">
+
+<h5>Total Jobs</h5>
+
+<h2>{{ jobs|length }}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3">
+
+<h5>Attendance Records</h5>
+
+<h2>{{ attendance|length }}</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card p-3">
+
+<h5>Leave Requests</h5>
+
+<h2>{{ leaves|length }}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<h4 class="mt-4">
+
+Employee Report
+
+</h4>
+
+<table class="table table-hover align-middle">
+
+<tr>
+
+<th>Name</th>
+
+<th>Department</th>
+
+<th>Position</th>
+
+</tr>
+
+{% for employee in employees %}
+
+<tr>
+
+<td>{{ employee.first_name }} {{ employee.last_name }}</td>
+
+<td>{{ employee.department }}</td>
+
+<td>{{ employee.position }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
