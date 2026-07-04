@@ -69,6 +69,19 @@ body{
     box-shadow:0 3px 10px rgba(0,0,0,.08);
 }
 
+@media (max-width: 768px) {
+
+    .sidebar{
+        min-height:auto;
+        padding-bottom:20px;
+    }
+
+    .content{
+        padding:20px;
+    }
+
+}
+
 </style>
 
 </head>
@@ -81,7 +94,7 @@ body{
 
 <div class="row">
 
-<div class="col-md-2 sidebar vh-100 position-sticky top-0">
+<div class="col-12 col-md-2 sidebar">
 
 <h3>
 
@@ -95,7 +108,7 @@ TalentHub
 
 </div>
 
-<div class="col-md-10 content">
+<div class="col-12 col-md-10 content mt-3 mt-md-0">
 
 {% block content %}
 
