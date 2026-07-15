@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<h2 class="mb-4">
+{% if user.is_superuser or user.groups.all.0.name == "HR Manager" %}
 
-Upload Document
+...Upload Document button...
 
-</h2>
+{% endif %}
 
 <div class="card p-4">
 

@@ -5,9 +5,11 @@
 <div class="d-flex justify-content-between mb-4">
     <h2>Performance Reviews</h2>
 
-<a href="/performance/add/" class="btn btn-primary rounded-pill">
-    + Add Review
-</a>
+{% if user.is_superuser or user.groups.all.0.name == "HR Manager" %}
+
+...Add Review button...
+
+{% endif %}
 
 </div>
 

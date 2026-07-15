@@ -6,9 +6,13 @@
 
     <h2>Job Listings</h2>
 
-    <a href="/recruitment/add/" class="btn btn-primary">
+    {% if user.is_superuser or user.groups.all.0.name == "Recruiter" %}
+
+    <a href="/recruitment/add/" class="btn btn-primary rounded-pill">
         + Add Job
     </a>
+
+    {% endif %}
 
 </div>
 
