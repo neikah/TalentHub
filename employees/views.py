@@ -1,8 +1,9 @@
+from role_required import group_required
 from django.shortcuts import render, redirect
 from .models import Employee
 from .forms import EmployeeForm
 
-
+@group_required("HR Manager", "Admin")
 def employee_list(request):
     employees = Employee.objects.all().order_by('-id')
 
@@ -10,7 +11,7 @@ def employee_list(request):
         'employees': employees
     })
 
-
+@group_required("HR Manager", "Admin")
 def add_employee(request):
 
     if request.method == "POST":

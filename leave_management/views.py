@@ -1,7 +1,9 @@
+from role_required import group_required
 from django.shortcuts import render, redirect
 from .models import Leave
 from .forms import LeaveForm
 
+@group_required("Employee", "HR Manager", "Admin")
 
 def leave_list(request):
     leaves = Leave.objects.all().order_by('-applied_on')
@@ -14,7 +16,7 @@ def leave_list(request):
         }
     )
 
-
+@group_required("HR Manager", "Employee", "Admin")
 def apply_leave(request):
 
     if request.method == "POST":

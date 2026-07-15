@@ -1,8 +1,9 @@
+from role_required import group_required
 from django.shortcuts import render, redirect
 from .models import Document
 from .forms import DocumentForm
 
-
+@group_required("HR Manager", "Employee", "Admin")
 def document_list(request):
     documents = Document.objects.all().order_by('-uploaded_at')
 
@@ -14,7 +15,7 @@ def document_list(request):
         }
     )
 
-
+@group_required("HR Manager", "Employee", "Admin")
 def upload_document(request):
 
     if request.method == "POST":

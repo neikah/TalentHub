@@ -94,6 +94,7 @@ body{
 
 <div class="row">
 
+{% if user.is_authenticated %}
 <div class="col-12 col-md-2 sidebar">
 
 <h3>
@@ -108,8 +109,10 @@ TalentHub
 
 </div>
 
-<div class="col-12 col-md-10 content mt-3 mt-md-0">
 
+{% endif %}
+
+<div class="{% if user.is_authenticated %}col-12 col-md-10{% else %}col-12{% endif %} content mt-3 mt-md-0">
 {% block content %}
 
 {% endblock %}

@@ -1,8 +1,9 @@
+from role_required import group_required
 from django.shortcuts import render, redirect
 from .models import Job
 from .forms import JobForm
 
-
+@group_required("Recruiter", "Admin", "Candidate")
 def job_list(request):
     jobs = Job.objects.all().order_by('-created_at')
 
@@ -11,7 +12,9 @@ def job_list(request):
     })
 
 
+@group_required("Recruiter", "Admin")
 def add_job(request):
+
 
     if request.method == 'POST':
 

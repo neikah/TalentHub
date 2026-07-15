@@ -9,6 +9,11 @@ from notifications.models import Notification
 
 def home(request):
 
+    if not request.user.is_authenticated:
+        return render(request,"home.html")
+
+    return render(request,"dashboard/home.html")
+
     jobs = Job.objects.all()
 
     employees = Employee.objects.all()
